@@ -1,0 +1,16 @@
+#include<msp430.h>
+main()
+{
+P1DIR=0X41;
+P1OUT=0;
+TACTL=0x02f0;
+TACCR0=0xffff;
+while(1)
+{
+while(TAR<0X7777);
+P1OUT^=BIT6;
+while((TACTL&1)==0);
+TACTL&=(~1);
+P1OUT^=0X41;
+}
+}
